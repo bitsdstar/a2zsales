@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2018 at 12:22 PM
+-- Generation Time: May 12, 2018 at 07:21 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `advertisements` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
   `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `categories` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE `advertisements` (
   `product_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` bigint(20) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -48,8 +49,11 @@ CREATE TABLE `advertisements` (
 -- Dumping data for table `advertisements`
 --
 
-INSERT INTO `advertisements` (`id`, `user_name`, `city`, `categories`, `brand`, `product_title`, `product_description`, `address`, `price`, `phone`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'Rajinder Kumar', 'Chamba', 'Cars', 'Honda', 'Honda City 2015 Model', 'This car is 40000 k.m driven and in good condtion.', 'Baikhet, Chamba', 500000, 789568956, 'images/honda city.jpg', NULL, NULL);
+INSERT INTO `advertisements` (`id`, `user_id`, `user_name`, `city`, `categories`, `brand`, `product_title`, `product_description`, `address`, `price`, `phone`, `image`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Rajinder Kumar', 'Chamba', 'Cars', 'Honda', 'Honda City 2015 Model', 'This car is 40000 k.m driven and in good condtion.', 'Baikhet, Chamba', 500000, 789568956, 'images/honda city.jpg', NULL, NULL),
+(2, 1, 'Rajinder Kumar', 'Bilaspur', 'Cars', 'Honda', 'Honda City 2017 Model', 'ssssss', 'www', 50000, 9459773401, 'images/honda city.jpg', NULL, NULL),
+(3, 1, 'Rajinder Kumar', 'Chamba', 'Mobiles', 'Vivo', 'vivo v9', 'This is new condition mobile 2018 model', 'chad', 10000, 8597586325, 'images/mob-first.png', NULL, NULL),
+(4, 2, 'bittu', 'Kinnour', 'Properties', 'House for Sale', 'villa at kinnour', 'My villa is at kinnour and is in good condtiion. want to sell it.', 'Riba at kinnour', 5000000, 98437896, 'images/anantara-uluwatu-bali-1.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,7 +198,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rajinder Kumar', 'rajinder.infin@gmail.com', '$2y$10$6cFbnPhCv1HfkTkBzyNYiuWJJMKBgB4TjcWcfTRAReVRKiN.QvFxW', NULL, '2018-04-10 01:19:47', '2018-04-10 01:19:47');
+(1, 'Rajinder Kumar', 'rajinder.infin@gmail.com', '$2y$10$6cFbnPhCv1HfkTkBzyNYiuWJJMKBgB4TjcWcfTRAReVRKiN.QvFxW', 'MjTVamE3kNgDqAU4RiSscnurFbYX2TMvVjcxigyuVvUcpXJqItKRAhaZkoqA', '2018-04-10 01:19:47', '2018-04-10 01:19:47'),
+(2, 'bittu', 'bitsdstar@gmail.com', '$2y$10$S5rB.dq.M4miaplTSM6ro.ZnN0L3v7deJelxRFAPVjO.xTVDui3c.', 'fPbvmduxJr5AYwh7VsqywBp3N9qePkS2ukyVh73Idh5zlMSyi3sEaLstiucc', '2018-05-11 04:08:13', '2018-05-11 04:08:13');
 
 --
 -- Indexes for dumped tables
@@ -244,7 +249,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -274,7 +279,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
